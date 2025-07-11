@@ -28,6 +28,29 @@ public class RegionDAO {
         session.close();
     }
 
+    public List<Region> listRegions() {
+        Session session = factory.openSession();
+        List<Region> regions = session.createQuery("FROM Region", Region.class).list();
+        session.close();
+        return regions;
+    }
+
+    public void addRegion(Region region) {
+        Session session = factory.openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            session.save(region);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
     public List<Region> getAllRegions() {
         Session session = factory.openSession();
         List<Region> regions = session.createQuery("from Region", Region.class).list();

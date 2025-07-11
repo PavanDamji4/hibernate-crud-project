@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.pavan.hibernate.model.Country" table="countries">
+        <id name="countryId" column="country_id" type="string">
+            <generator class="assigned"/>
+        </id>
+
+        <property name="countryName" column="country_name" type="string"/>
+        <property name="regionId" column="region_id" type="int"/>
+    </class>
+</hibernate-mapping>
